@@ -28,7 +28,7 @@ struct AmbientData
  *
  * @details Unifies the hot-path readings the logic consumes (heading, ambient,
  *          battery) behind a single contract, delegating to the existing native
- *          drivers (compass/IMU, BME280, battery ADC). Presence of each sensor is
+ *          drivers (compass/IMU, BME280/DPS310, battery ADC). Presence of each sensor is
  *          queried at runtime through the has*() methods, so Layer-2/3 no longer
  *          branch on board macros to know what is available. Sensor bring-up,
  *          configuration and calibration stay with the concrete drivers, as they

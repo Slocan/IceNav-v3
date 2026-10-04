@@ -9,6 +9,7 @@
 #include "lvglSubjects.hpp"
 #include "../../gps/gps.hpp"
 #include "../../bme/bme.hpp"
+#include "../../dps310/dps310.hpp"
 #include "../../sensors/src/sensors.hpp"
 #include "../../settings/settings.hpp"
 #include <time.h>

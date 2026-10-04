@@ -15,12 +15,13 @@
 #include "tasks.hpp"
 #include "cli.hpp"
 #include "bme.hpp"
+#include "dps310.hpp"
 #include "maps.hpp"
 #include "firmUpgrade.hpp"
 #include "splashScr.hpp"
 #include "notifyBar.hpp"
 #include "settingsScr.hpp"
-#if defined(BATT_ADC_UNIT) || defined(WAVESHARE_P4_35) || defined(BME280) || defined(ENABLE_IMU) || defined(ENABLE_COMPASS)
+#if defined(BATT_ADC_UNIT) || defined(WAVESHARE_P4_35) || defined(BME280) || defined(DPS310) || defined(ENABLE_IMU) || defined(ENABLE_COMPASS)
 #include "sensorScr.hpp"
 #endif
 #include "deviceSettingsScr.hpp"

@@ -13,6 +13,7 @@
 
 #include "gps.hpp"
 #include "bme.hpp"
+#include "dps310.hpp"
 #include "battery.hpp"
 #include "compass.hpp"
 #include "lvgl.h"

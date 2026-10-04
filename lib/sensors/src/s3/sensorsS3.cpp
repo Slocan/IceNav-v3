@@ -22,6 +22,9 @@
 #ifdef BME280
     #include "bme.hpp"
     extern BME280_Driver bme;
+#elif defined(DPS310)
+    #include "dps310.hpp"
+    extern DPS310_Driver dps;
 #endif
 
 extern Battery battery;
@@ -49,7 +52,7 @@ public:
 
     bool hasAmbient() const override
     {
-        #ifdef BME280
+        #if defined(BME280) || defined(DPS310)
             return true;
         #else
             return false;
@@ -85,6 +88,15 @@ public:
             data.pressure    = p;
             data.humidity    = h;
             data.altitude    = bme.readAltitude(p);
+            return true;
+        #elif defined(DPS310)
+            float t = 0.0f;
+            float p = 0.0f;
+            dps.readAll(t, p);
+            data.temperature = t;
+            data.pressure    = p;
+            data.humidity    = 0.0f;
+            data.altitude    = dps.readAltitude(p);
             return true;
         #else
             data.temperature = 0.0f;

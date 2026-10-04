@@ -26,6 +26,9 @@
 #ifdef BME280
     #include "bme.hpp"
     extern BME280_Driver bme;
+#elif defined(DPS310)
+    #include "dps310.hpp"
+    extern DPS310_Driver dps;
 #endif
 
 #ifdef COMPASS_AUTO
@@ -39,7 +42,7 @@
  *
  * @details Battery readings are delegated to the AXP2101 PMIC driver on
  *          boards that carry it (WAVESHARE_P4_35). Ambient readings are
- *          delegated to the BME280 driver, and compass readings to the
+ *          delegated to the BME280 or DPS310 driver, and compass readings to the
  *          auto-detected QMC5883L/HMC5883L driver, both shared with the
  *          touch I2C bus.
  */
@@ -57,7 +60,7 @@ public:
 
     bool hasAmbient() const override
     {
-        #ifdef BME280
+        #if defined(BME280) || defined(DPS310)
             return true;
         #else
             return false;
@@ -93,6 +96,15 @@ public:
             data.pressure    = p;
             data.humidity    = h;
             data.altitude    = bme.readAltitude(p);
+            return true;
+        #elif defined(DPS310)
+            float t = 0.0f;
+            float p = 0.0f;
+            dps.readAll(t, p);
+            data.temperature = t;
+            data.pressure    = p;
+            data.humidity    = 0.0f;
+            data.altitude    = dps.readAltitude(p);
             return true;
         #else
             data.temperature = 0.0f;

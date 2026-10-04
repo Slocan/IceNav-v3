@@ -326,10 +326,10 @@ static int getBatteryLevel(int v)
 /**
  * @brief Sensor data processing task
  *
- * @details Periodically reads data from non-GPS sensors (BME280, Compass, Battery)
+ * @details Periodically reads data from non-GPS sensors (BME280/DPS310, Compass, Battery)
  *          and updates the global globalSensorData structure.
  *          The compass is sampled at a high rate (50Hz) for UI fluidity, while
- *          the battery and BME are sampled slowly (~1.5s).
+ *          the battery and ambient sensor are sampled slowly (~1.5s).
  *          Sensor readings are suspended during map scrolling to free up the I2C bus.
  *
  * @param pvParameters Task parameters (unused)
